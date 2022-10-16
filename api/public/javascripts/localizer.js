@@ -1,6 +1,6 @@
 class Localizer
 {
-    constructor(locale)
+    constructor(locale = 'en')
     {
         const localeList = ["en", "ru"]
         if (localeList.indexOf(locale.toLowerCase()) >= 0)

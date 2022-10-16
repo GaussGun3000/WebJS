@@ -1,34 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
 import {Component} from "react";
+import LanguageDropList from './Elements.js'
+import API from './API'
 
-class App extends Component
-{
+class App extends Component {
     constructor(props) {
         super(props);
-        this.state = { apiResponse: "" };
-    }
-
-    callAPI() {
-        fetch("http://localhost:8000/testAPI/?rid=1")
-            .then(res => res.text())
-            .then(res => this.setState({ apiResponse: res }));
+        this.API = new API()
+        this.state = {apiResponse: ""};
     }
 
     componentWillMount() {
-        this.callAPI();
+        this.API.testAPI()
+            .then(res => this.setState({ apiResponse: res }))
+
     }
   render()
   {
     return (
         <div className="App">
           <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo"/>
-              <p>API response: {this.state.apiResponse}</p>
+              <p id="APIResponse">API response: {this.state.apiResponse}</p>
+              <LanguageDropList />
           </header>
         </div>
     );
   }
 }
+
+
 
 export default App;

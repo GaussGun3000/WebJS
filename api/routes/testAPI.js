@@ -9,13 +9,8 @@ router.get("/", function(req, res, next)
     let localizer;
     let response;
     try {
-        if (!locale) {
-            localizer = new Localizer('en')
-            response = localizer.getLocalizedText('api response')
-        } else {
-            localizer = new Localizer(locale)
-            response = localizer.getLocalizedText('api response')
-        }
+        localizer = new Localizer(locale)
+        response = localizer.getLocalizedText('api response')
     }
     catch (ex)
     {
