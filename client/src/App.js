@@ -1,6 +1,7 @@
-import './App.css';
+import './styles/App.css';
 import {Component} from "react";
-import LanguageDropList from './Elements.js'
+import LanguageDropList from './components/LanguageDropList.js'
+import Login from './components/Login.js'
 import API from './API'
 
 class App extends Component {
@@ -11,8 +12,8 @@ class App extends Component {
     }
 
     componentWillMount() {
-        this.API.testAPI()
-            .then(res => this.setState({ apiResponse: res }))
+        // this.API.testAPI()
+        //     .then(res => this.setState({ apiResponse: res }))
 
     }
   render()
@@ -20,8 +21,7 @@ class App extends Component {
     return (
         <div className="App">
           <header className="App-header">
-              <p id="APIResponse">API response: {this.state.apiResponse}</p>
-              <LanguageDropList />
+              <Login />
           </header>
         </div>
     );
