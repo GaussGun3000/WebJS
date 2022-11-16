@@ -1,28 +1,21 @@
 var express = require("express");
 var router = express.Router();
+var session = require("express-session")
 var Localizer = require("../public/javascripts/localizer.js")
 
-router.get("/", function(req, res, next)
+router.use(session({
+    secret: "secret",
+    cookie: {},
+    resave: false,
+    saveUninitialized: false
+}))
+
+router.get("/stats", function(req, res, next)
 {
-    let rid = req.query.rid;
-    let locale = req.query.locale;
-    let localizer;
-    let response;
-    try {
-        localizer = new Localizer(locale)
-        response = localizer.getLocalizedText('api response')
-    }
-    catch (ex)
-    {
-        if (ex.message === `Illegal -locale- argument value (${locale}) at Localizer constructor!`)
-        { response = `Language "${locale}" is not supported`;}
-        else
-        {
-            console.log(ex);
-            response = ex.description;
-        }
-    }
-    res.send(response + ` RID = ${rid}`);
+    req.session.requestsSent ? req.session.requestsSent += 1 : req.session.requestsSent = 1
+    const date = new Date()
+    req.session.lastRequest = (`${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`)
+    res.json({requestsSent: req.session.requestsSent, lastRequest: req.session.lastRequest})
 });
 
 module.exports = router;

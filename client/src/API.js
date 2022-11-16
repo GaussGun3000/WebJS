@@ -11,9 +11,10 @@ class API
         return fetch(`${this.queryPrefix}/testAPI/?rid=${rid}&locale=${locale}`).then(res => res.text())
      }
 
-     login(username, password)
+     stats()
      {
-         console.log(`Login request for user ${username}`)
+         console.log(`Request to auth/stats`)
+         return fetch(`${this.queryPrefix}/auth/stats`, {method: 'POST'}).then(res => res.json())
      }
 }
 

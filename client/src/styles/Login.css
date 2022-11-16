@@ -41,14 +41,17 @@ textarea {
 }
 
 label,
-button {
-    margin-top: 1rem;
+.logOut-button {
     width: calc(50px + 5vmin);
-
 }
 
 button {
+    margin-top: 1rem;
     padding: 0.5rem;
+}
+
+.updateColor{
+
 }
 
 .instructions {

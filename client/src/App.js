@@ -1,6 +1,5 @@
 import './styles/App.css';
 import {Component} from "react";
-import LanguageDropList from './components/LanguageDropList.js'
 import Login from './components/Login.js'
 import API from './API'
 
